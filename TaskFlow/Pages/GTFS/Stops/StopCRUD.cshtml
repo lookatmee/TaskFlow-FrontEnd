@@ -1,0 +1,115 @@
+@page
+@model BW_WEB.Pages.GTFS.Stops.StopCRUDModel
+@{
+    ViewData["Title"] = "Stops";
+    var token = Model.HttpContext.Session.GetString("JWToken");
+}
+
+<h2 class="mb-4">Stops</h2>
+
+<!-- Sección para importar los estilos CSS necesarios -->
+@section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/datatables-bs5/datatables.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/sweetalert2/sweetalert2.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/form-validation.dist.css" />
+}
+
+<!-- Sección de scripts JS -->
+@section VendorScripts {
+    <script src="~/vendor/libs/moment/moment.dist.js"></script>
+    <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/sweetalert2/sweetalert2.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/popular.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave-phone.dist.js"></script>
+}
+
+@* // Script específico de la página, que maneja las operaciones de CRUD de STOPS *@
+@section PageScripts {
+    <script src="~/js/GTFS-stop.js"></script>
+}
+
+<div class="col-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="text-center">Seleccionar Versión:</h5>
+        </div>
+        <div class="col d-flex justify-content-center mt-2 mb-2">
+            <form method="post">
+                <select id="versionSelect" class="select2 form-select" style="width:85%" asp-for="SelectedVersionID" asp-items="Model.Versions" onchange="this.form.submit()">
+                    <option value="">Seleccione una versión</option>
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@if (Model.StopsByVersion != null && Model.StopsByVersion.Count > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5> <!-- Título del filtro de búsqueda -->
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="stopTable" class="table">
+                <!-- Tabla de Stops con ID específico para aplicar DataTables -->
+                <thead class="border-top">
+                    <tr>
+                        <td></td>
+                        <th>Código Parada</th>
+                        <th>Nombre Parada</th>
+                        <th>Posición GPS</th>
+                        <th>Tipo Ubicación</th>
+                        <th>Embarque silla de ruedas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var stop in Model.StopsByVersion)
+                    {
+                        <tr>
+                            <td></td> <!-- Columna vacía por diseño -->
+                            <td>@stop.StopID</td>
+                            <td>@stop.StopName</td>
+                            <td>
+                                @{
+                                    var googleMapsLink = $"https://www.google.com/maps/search/?api=1&query={stop.StopLat.ToString(System.Globalization.CultureInfo.InvariantCulture)},{stop.StopLon.ToString(System.Globalization.CultureInfo.InvariantCulture)}&zoom=20";
+                                }
+                                <a href="@googleMapsLink" target="_blank">Localización</a>
+                            </td>
+                            <td>@stop.LocationTypeDescripcion</td>
+                            <td>@stop.WheelchairBoardingDescripcion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5> <!-- Título cuando no hay stops -->
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="stopTable" class="table">
+                <!-- Tabla vacía con cabeceras -->
+                <thead class="border-top">
+                    <tr>
+                        <td></td>
+                        <th>Código Parada</th>
+                        <th>Nombre Parada</th>
+                        <th>Posición GPS</th>
+                        <th>Tipo Ubicación</th>
+                        <th>Embarque silla de ruedas</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+}

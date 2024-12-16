@@ -1,0 +1,45 @@
+@* Offcanvas para la edición de una versión existente *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="editVersionOffcanvas" aria-labelledby="editVersionOffcanvasLabel">
+
+    @* Encabezado del offcanvas con un título y un botón para cerrarlo *@
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="editVersionOffcanvasLabel">Editar Versión</h5> <!-- Título que indica que es para editar una versión -->
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> <!-- Botón para cerrar el offcanvas -->
+    </div>
+
+    @* Cuerpo del offcanvas donde se encuentra el formulario para editar la versión seleccionada *@
+    <div class="offcanvas-body mx-0 flex-grow-0">
+
+        @* Formulario para editar una versión existente. El formulario envía datos usando el método POST y el handler "EditOrUpdate" *@
+        <form method="post" asp-page-handler="EditOrUpdate" asp-route-id="@Model.UpdateVersion.VersionID" id="editVersionForm">
+
+            @* Campo para editar la descripción de la versión *@
+            <div class="mb-6">
+                <label for="EditVersion_Descripcion" class="form-label">Descripción</label> <!-- Etiqueta del campo de descripción -->
+                <input class="form-control" id="EditVersion_Descripcion" name="UpdateVersion.DescripcionVersion" value="@Model.UpdateVersion.DescripcionVersion" /> <!-- Campo de entrada para la descripción de la versión -->
+            </div>
+
+            @* Campo para editar la fecha de inicio de la versión *@
+            <div class="mb-6">
+                <label for="EditVersion_FechaInicio" class="form-label">Fecha de Inicio</label> <!-- Etiqueta del campo de fecha de inicio -->
+                <input class="form-control" id="EditVersion_FechaInicio" type="date" name="UpdateVersion.FechaInicioVersion" value="@Model.UpdateVersion.FechaInicioVersion?.ToString("yyyy-MM-dd")" /> <!-- Campo de entrada para la fecha de inicio de la versión -->
+            </div>
+
+            @* Campo para seleccionar el estado de la versión desde un dropdown, usando SelectedEstado *@
+            <div class="mb-6">
+                <label for="EditVersion_Estado" class="form-label">Estado</label> <!-- Etiqueta del dropdown para seleccionar el estado -->
+                <select class="form-select" id="EditVersion_Estado" name="UpdateVersion.SelectedEstado" asp-items="Model.AvailableEstadosSelectList">
+                    <option value="">Seleccionar estado</option> <!-- Opción por defecto para seleccionar un estado -->
+                </select>
+            </div>
+
+            @* Botones para enviar el formulario o cancelar la operación *@
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button> <!-- Botón para enviar el formulario con los datos modificados -->
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">Cancelar</button> <!-- Botón para cancelar la edición y cerrar el offcanvas -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

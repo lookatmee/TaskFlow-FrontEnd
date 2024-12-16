@@ -1,0 +1,68 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./wwwroot/vendor/libs/formvalidation/dist/js/locales/vi_VN.js":
+/*!*********************************************************************!*\
+  !*** ./wwwroot/vendor/libs/formvalidation/dist/js/locales/vi_VN.js ***!
+  \*********************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\n(function (global, factory) {\n  ( false ? 0 : _typeof(exports)) === 'object' && \"object\" !== 'undefined' ? module.exports = factory() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),\n\t\t__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?\n\t\t(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :\n\t\t__WEBPACK_AMD_DEFINE_FACTORY__),\n\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : (0);\n})(this, function () {\n  'use strict';\n\n  /**\n   * Vietnamese language package\n   * Translated by @nghuuphuoc\n   */\n  var vi_VN = {\n    base64: {\n      default: 'Vui lòng nhập chuỗi mã hoá base64 hợp lệ'\n    },\n    between: {\n      default: 'Vui lòng nhập giá trị nằm giữa %s và %s',\n      notInclusive: 'Vui lòng nhập giá trị nằm giữa %s và %s'\n    },\n    bic: {\n      default: 'Vui lòng nhập số BIC hợp lệ'\n    },\n    callback: {\n      default: 'Vui lòng nhập giá trị hợp lệ'\n    },\n    choice: {\n      between: 'Vui lòng chọn %s - %s lựa chọn',\n      default: 'Vui lòng nhập giá trị hợp lệ',\n      less: 'Vui lòng chọn ít nhất %s lựa chọn',\n      more: 'Vui lòng chọn nhiều nhất %s lựa chọn'\n    },\n    color: {\n      default: 'Vui lòng nhập mã màu hợp lệ'\n    },\n    creditCard: {\n      default: 'Vui lòng nhập số thẻ tín dụng hợp lệ'\n    },\n    cusip: {\n      default: 'Vui lòng nhập số CUSIP hợp lệ'\n    },\n    date: {\n      default: 'Vui lòng nhập ngày hợp lệ',\n      max: 'Vui lòng nhập ngày trước %s',\n      min: 'Vui lòng nhập ngày sau %s',\n      range: 'Vui lòng nhập ngày trong khoảng %s - %s'\n    },\n    different: {\n      default: 'Vui lòng nhập một giá trị khác'\n    },\n    digits: {\n      default: 'Vui lòng chỉ nhập số'\n    },\n    ean: {\n      default: 'Vui lòng nhập số EAN hợp lệ'\n    },\n    ein: {\n      default: 'Vui lòng nhập số EIN hợp lệ'\n    },\n    emailAddress: {\n      default: 'Vui lòng nhập địa chỉ email hợp lệ'\n    },\n    file: {\n      default: 'Vui lòng chọn file hợp lệ'\n    },\n    greaterThan: {\n      default: 'Vui lòng nhập giá trị lớn hơn hoặc bằng %s',\n      notInclusive: 'Vui lòng nhập giá trị lớn hơn %s'\n    },\n    grid: {\n      default: 'Vui lòng nhập số GRId hợp lệ'\n    },\n    hex: {\n      default: 'Vui lòng nhập số hexa hợp lệ'\n    },\n    iban: {\n      countries: {\n        AD: 'Andorra',\n        AE: 'Tiểu vương quốc Ả Rập thống nhất',\n        AL: 'Albania',\n        AO: 'Angola',\n        AT: 'Áo',\n        AZ: 'Azerbaijan',\n        BA: 'Bosnia và Herzegovina',\n        BE: 'Bỉ',\n        BF: 'Burkina Faso',\n        BG: 'Bulgaria',\n        BH: 'Bahrain',\n        BI: 'Burundi',\n        BJ: 'Benin',\n        BR: 'Brazil',\n        CH: 'Thuỵ Sĩ',\n        CI: 'Bờ Biển Ngà',\n        CM: 'Cameroon',\n        CR: 'Costa Rica',\n        CV: 'Cape Verde',\n        CY: 'Síp',\n        CZ: 'Séc',\n        DE: 'Đức',\n        DK: 'Đan Mạch',\n        DO: 'Dominican',\n        DZ: 'Algeria',\n        EE: 'Estonia',\n        ES: 'Tây Ban Nha',\n        FI: 'Phần Lan',\n        FO: 'Đảo Faroe',\n        FR: 'Pháp',\n        GB: 'Vương quốc Anh',\n        GE: 'Georgia',\n        GI: 'Gibraltar',\n        GL: 'Greenland',\n        GR: 'Hy Lạp',\n        GT: 'Guatemala',\n        HR: 'Croatia',\n        HU: 'Hungary',\n        IE: 'Ireland',\n        IL: 'Israel',\n        IR: 'Iran',\n        IS: 'Iceland',\n        IT: 'Ý',\n        JO: 'Jordan',\n        KW: 'Kuwait',\n        KZ: 'Kazakhstan',\n        LB: 'Lebanon',\n        LI: 'Liechtenstein',\n        LT: 'Lithuania',\n        LU: 'Luxembourg',\n        LV: 'Latvia',\n        MC: 'Monaco',\n        MD: 'Moldova',\n        ME: 'Montenegro',\n        MG: 'Madagascar',\n        MK: 'Macedonia',\n        ML: 'Mali',\n        MR: 'Mauritania',\n        MT: 'Malta',\n        MU: 'Mauritius',\n        MZ: 'Mozambique',\n        NL: 'Hà Lan',\n        NO: 'Na Uy',\n        PK: 'Pakistan',\n        PL: 'Ba Lan',\n        PS: 'Palestine',\n        PT: 'Bồ Đào Nha',\n        QA: 'Qatar',\n        RO: 'Romania',\n        RS: 'Serbia',\n        SA: 'Ả Rập Xê Út',\n        SE: 'Thuỵ Điển',\n        SI: 'Slovenia',\n        SK: 'Slovakia',\n        SM: 'San Marino',\n        SN: 'Senegal',\n        TL: 'Đông Timor',\n        TN: 'Tunisia',\n        TR: 'Thổ Nhĩ Kỳ',\n        VG: 'Đảo Virgin, Anh quốc',\n        XK: 'Kosovo'\n      },\n      country: 'Vui lòng nhập mã IBAN hợp lệ của %s',\n      default: 'Vui lòng nhập số IBAN hợp lệ'\n    },\n    id: {\n      countries: {\n        BA: 'Bosnia và Herzegovina',\n        BG: 'Bulgaria',\n        BR: 'Brazil',\n        CH: 'Thuỵ Sĩ',\n        CL: 'Chi Lê',\n        CN: 'Trung Quốc',\n        CZ: 'Séc',\n        DK: 'Đan Mạch',\n        EE: 'Estonia',\n        ES: 'Tây Ban Nha',\n        FI: 'Phần Lan',\n        HR: 'Croatia',\n        IE: 'Ireland',\n        IS: 'Iceland',\n        LT: 'Lithuania',\n        LV: 'Latvia',\n        ME: 'Montenegro',\n        MK: 'Macedonia',\n        NL: 'Hà Lan',\n        PL: 'Ba Lan',\n        RO: 'Romania',\n        RS: 'Serbia',\n        SE: 'Thuỵ Điển',\n        SI: 'Slovenia',\n        SK: 'Slovakia',\n        SM: 'San Marino',\n        TH: 'Thái Lan',\n        TR: 'Thổ Nhĩ Kỳ',\n        ZA: 'Nam Phi'\n      },\n      country: 'Vui lòng nhập mã ID hợp lệ của %s',\n      default: 'Vui lòng nhập mã ID hợp lệ'\n    },\n    identical: {\n      default: 'Vui lòng nhập cùng giá trị'\n    },\n    imei: {\n      default: 'Vui lòng nhập số IMEI hợp lệ'\n    },\n    imo: {\n      default: 'Vui lòng nhập số IMO hợp lệ'\n    },\n    integer: {\n      default: 'Vui lòng nhập số hợp lệ'\n    },\n    ip: {\n      default: 'Vui lòng nhập địa chỉ IP hợp lệ',\n      ipv4: 'Vui lòng nhập địa chỉ IPv4 hợp lệ',\n      ipv6: 'Vui lòng nhập địa chỉ IPv6 hợp lệ'\n    },\n    isbn: {\n      default: 'Vui lòng nhập số ISBN hợp lệ'\n    },\n    isin: {\n      default: 'Vui lòng nhập số ISIN hợp lệ'\n    },\n    ismn: {\n      default: 'Vui lòng nhập số ISMN hợp lệ'\n    },\n    issn: {\n      default: 'Vui lòng nhập số ISSN hợp lệ'\n    },\n    lessThan: {\n      default: 'Vui lòng nhập giá trị nhỏ hơn hoặc bằng %s',\n      notInclusive: 'Vui lòng nhập giá trị nhỏ hơn %s'\n    },\n    mac: {\n      default: 'Vui lòng nhập địa chỉ MAC hợp lệ'\n    },\n    meid: {\n      default: 'Vui lòng nhập số MEID hợp lệ'\n    },\n    notEmpty: {\n      default: 'Vui lòng nhập giá trị'\n    },\n    numeric: {\n      default: 'Vui lòng nhập số hợp lệ'\n    },\n    phone: {\n      countries: {\n        AE: 'Tiểu vương quốc Ả Rập thống nhất',\n        BG: 'Bulgaria',\n        BR: 'Brazil',\n        CN: 'Trung Quốc',\n        CZ: 'Séc',\n        DE: 'Đức',\n        DK: 'Đan Mạch',\n        ES: 'Tây Ban Nha',\n        FR: 'Pháp',\n        GB: 'Vương quốc Anh',\n        IN: 'Ấn Độ',\n        MA: 'Maroc',\n        NL: 'Hà Lan',\n        PK: 'Pakistan',\n        RO: 'Romania',\n        RU: 'Nga',\n        SK: 'Slovakia',\n        TH: 'Thái Lan',\n        US: 'Mỹ',\n        VE: 'Venezuela'\n      },\n      country: 'Vui lòng nhập số điện thoại hợp lệ của %s',\n      default: 'Vui lòng nhập số điện thoại hợp lệ'\n    },\n    promise: {\n      default: 'Vui lòng nhập giá trị hợp lệ'\n    },\n    regexp: {\n      default: 'Vui lòng nhập giá trị thích hợp với biểu mẫu'\n    },\n    remote: {\n      default: 'Vui lòng nhập giá trị hợp lệ'\n    },\n    rtn: {\n      default: 'Vui lòng nhập số RTN hợp lệ'\n    },\n    sedol: {\n      default: 'Vui lòng nhập số SEDOL hợp lệ'\n    },\n    siren: {\n      default: 'Vui lòng nhập số Siren hợp lệ'\n    },\n    siret: {\n      default: 'Vui lòng nhập số Siret hợp lệ'\n    },\n    step: {\n      default: 'Vui lòng nhập bước nhảy của %s'\n    },\n    stringCase: {\n      default: 'Vui lòng nhập ký tự thường',\n      upper: 'Vui lòng nhập ký tự in hoa'\n    },\n    stringLength: {\n      between: 'Vui lòng nhập giá trị có độ dài trong khoảng %s và %s ký tự',\n      default: 'Vui lòng nhập giá trị có độ dài hợp lệ',\n      less: 'Vui lòng nhập ít hơn %s ký tự',\n      more: 'Vui lòng nhập nhiều hơn %s ký tự'\n    },\n    uri: {\n      default: 'Vui lòng nhập địa chỉ URI hợp lệ'\n    },\n    uuid: {\n      default: 'Vui lòng nhập số UUID hợp lệ',\n      version: 'Vui lòng nhập số UUID phiên bản %s hợp lệ'\n    },\n    vat: {\n      countries: {\n        AT: 'Áo',\n        BE: 'Bỉ',\n        BG: 'Bulgaria',\n        BR: 'Brazil',\n        CH: 'Thuỵ Sĩ',\n        CY: 'Síp',\n        CZ: 'Séc',\n        DE: 'Đức',\n        DK: 'Đan Mạch',\n        EE: 'Estonia',\n        EL: 'Hy Lạp',\n        ES: 'Tây Ban Nha',\n        FI: 'Phần Lan',\n        FR: 'Pháp',\n        GB: 'Vương quốc Anh',\n        GR: 'Hy Lạp',\n        HR: 'Croatia',\n        HU: 'Hungari',\n        IE: 'Ireland',\n        IS: 'Iceland',\n        IT: 'Ý',\n        LT: 'Lithuania',\n        LU: 'Luxembourg',\n        LV: 'Latvia',\n        MT: 'Malta',\n        NL: 'Hà Lan',\n        NO: 'Na Uy',\n        PL: 'Ba Lan',\n        PT: 'Bồ Đào Nha',\n        RO: 'Romania',\n        RS: 'Serbia',\n        RU: 'Nga',\n        SE: 'Thuỵ Điển',\n        SI: 'Slovenia',\n        SK: 'Slovakia',\n        VE: 'Venezuela',\n        ZA: 'Nam Phi'\n      },\n      country: 'Vui lòng nhập số VAT hợp lệ của %s',\n      default: 'Vui lòng nhập số VAT hợp lệ'\n    },\n    vin: {\n      default: 'Vui lòng nhập số VIN hợp lệ'\n    },\n    zipCode: {\n      countries: {\n        AT: 'Áo',\n        BG: 'Bulgaria',\n        BR: 'Brazil',\n        CA: 'Canada',\n        CH: 'Thuỵ Sĩ',\n        CZ: 'Séc',\n        DE: 'Đức',\n        DK: 'Đan Mạch',\n        ES: 'Tây Ban Nha',\n        FR: 'Pháp',\n        GB: 'Vương quốc Anh',\n        IE: 'Ireland',\n        IN: 'Ấn Độ',\n        IT: 'Ý',\n        MA: 'Maroc',\n        NL: 'Hà Lan',\n        PL: 'Ba Lan',\n        PT: 'Bồ Đào Nha',\n        RO: 'Romania',\n        RU: 'Nga',\n        SE: 'Thuỵ Sĩ',\n        SG: 'Singapore',\n        SK: 'Slovakia',\n        US: 'Mỹ'\n      },\n      country: 'Vui lòng nhập mã bưu điện hợp lệ của %s',\n      default: 'Vui lòng nhập mã bưu điện hợp lệ'\n    }\n  };\n  return vi_VN;\n});\n\n//# sourceURL=webpack://Vuexy/./wwwroot/vendor/libs/formvalidation/dist/js/locales/vi_VN.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./wwwroot/vendor/libs/formvalidation/dist/js/locales/vi_VN.js");
+/******/ 	
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
+});

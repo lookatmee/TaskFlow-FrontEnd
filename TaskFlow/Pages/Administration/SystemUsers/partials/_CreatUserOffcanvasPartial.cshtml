@@ -1,0 +1,62 @@
+@model BW_WEB.Pages.Administration.SystemUsers.SystemUserCRUDModel
+
+@* Offcanvas para la creación de un nuevo usuario. Este componente se desliza desde la derecha. *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="createUserOffcanvas" aria-labelledby="createUserOffcanvasLabel">
+
+    @* Encabezado del offcanvas con un título y un botón para cerrarlo *@
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="createUserOffcanvasLabel">Crear Usuario</h5> <!-- Título que indica el propósito del offcanvas -->
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> <!-- Botón para cerrar el offcanvas -->
+    </div>
+
+    @* Cuerpo del offcanvas donde se encuentra el formulario para crear un usuario nuevo *@
+    <div class="offcanvas-body mx-0 flex-grow-0">
+
+        @* Formulario para la creación de un nuevo usuario. Se envía con método POST *@
+        <form method="post" id="createUserForm">
+
+            @* Campo para ingresar el nombre del nuevo usuario *@
+            <div class="mb-6">
+                <label for="NewUser_Nombre" class="form-label">Nombre</label> <!-- Etiqueta del campo de nombre -->
+                <input asp-for="NewUser.Nombre" class="form-control" id="NewUser_Nombre" placeholder="John" aria-label="John" /> <!-- Campo de entrada para el nombre -->
+            </div>
+
+            @* Campo para ingresar los apellidos del nuevo usuario *@
+            <div class="mb-6">
+                <label for="NewUser_Apellidos" class="form-label">Apellidos</label> <!-- Etiqueta del campo de apellidos -->
+                <input asp-for="NewUser.Apellidos" class="form-control" id="NewUser_Apellidos" placeholder="Doe" aria-label="Doe"> <!-- Campo de entrada para los apellidos -->
+            </div>
+
+            @* Campo para ingresar el correo electrónico del nuevo usuario *@
+            <div class="mb-6">
+                <label for="NewUser_Email" class="form-label">Email</label> <!-- Etiqueta del campo de email -->
+                <input asp-for="NewUser.Email" class="form-control" id="NewUser_Email" placeholder="john.doe@example.com" aria-label="john.doe@example.com"> <!-- Campo de entrada para el email -->
+            </div>
+
+            @* Campo para seleccionar el rol del nuevo usuario desde un dropdown *@
+            <div class="mb-6">
+                <label for="NewUser_SelectedRole" class="form-label">Rol del Usuario</label> <!-- Etiqueta para el dropdown de roles -->
+                <select asp-for="NewUser.SelectedRole" asp-items="Model.AvailableRolesSelectList" class="form-select" id="NewUser_SelectedRole">
+                    <!-- Dropdown para seleccionar el rol -->
+                    <option value="">Seleccionar Rol</option> <!-- Opción por defecto para seleccionar un rol -->
+                </select>
+            </div>
+
+            @* Campo para seleccionar las empresas desde un dropdown *@
+            <div class="mb-6">
+                <label for="NewUser_SelectedEmpresas" class="form-label">Empresas</label>
+                <select id="NewUser_SelectedEmpresas" name="SelectedEmpresaIDs" class="select2 form-select" multiple asp-items="Model.AvailableEmpresasSelectList">
+                </select>
+            </div>
+
+
+            @* Botones para enviar el formulario o cancelar la operación *@
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-3">Enviar</button> <!-- Botón para enviar el formulario -->
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">Cancelar</button> <!-- Botón para cancelar y cerrar el offcanvas -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

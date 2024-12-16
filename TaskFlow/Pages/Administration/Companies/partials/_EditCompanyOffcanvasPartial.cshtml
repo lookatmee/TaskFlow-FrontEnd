@@ -1,0 +1,73 @@
+@* Offcanvas para la edición de una empresa existente *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="editCompanyOffcanvas" aria-labelledby="editCompanyOffcanvasLabel">
+
+    @* Encabezado del offcanvas con un título y un botón para cerrarlo *@
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="editCompanyOffcanvasLabel">Editar Empresa</h5> <!-- Título que indica que es para editar una empresa -->
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> <!-- Botón para cerrar el offcanvas -->
+    </div>
+
+    @* Cuerpo del offcanvas donde se encuentra el formulario para editar la empresa seleccionada *@
+    <div class="offcanvas-body mx-0 flex-grow-0">
+
+        @* Formulario para editar una empresa existente. El formulario envía datos usando el método POST y el handler "EditOrUpdate" *@
+        <form method="post" asp-page-handler="EditOrUpdate" asp-route-id="@Model.UpdateCompany.EmpresaID" id="editCompanyForm">
+
+            @* Campo para editar el nombre corto de la empresa *@
+            <div class="mb-6">
+                <label for="EditCompany_Nombre" class="form-label">Nombre</label> <!-- Etiqueta del campo de nombre corto -->
+                <input class="form-control" id="EditCompany_Nombre" name="UpdateCompany.Nombre" value="@Model.UpdateCompany.Nombre" /> <!-- Campo de entrada para el nombre corto de la empresa -->
+            </div>
+
+            @* Campo para editar el nombre largo de la empresa *@
+            <div class="mb-6">
+                <label for="EditCompany_NombreLargo" class="form-label">Nombre Largo</label> <!-- Etiqueta del campo de nombre largo -->
+                <input class="form-control" id="EditCompany_NombreLargo" name="UpdateCompany.NombreLargo" value="@Model.UpdateCompany.NombreLargo" /> <!-- Campo de entrada para el nombre largo de la empresa -->
+            </div>
+
+            @* Campo para editar la dirección de la empresa *@
+            <div class="mb-6">
+                <label for="EditCompany_Direccion" class="form-label">Dirección</label> <!-- Etiqueta del campo de dirección -->
+                <input class="form-control" id="EditCompany_Direccion" name="UpdateCompany.Direccion" value="@Model.UpdateCompany.Direccion" /> <!-- Campo de entrada para la dirección de la empresa -->
+            </div>
+
+            @* Campo para editar el teléfono de la empresa *@
+            <div class="mb-6">
+                <label for="EditCompany_Telefono" class="form-label">Teléfono</label> <!-- Etiqueta del campo de teléfono -->
+                <input class="form-control" id="EditCompany_Telefono" name="UpdateCompany.Telefono" value="@Model.UpdateCompany.Telefono" /> <!-- Campo de entrada para el teléfono de la empresa -->
+            </div>
+
+            @* Campo para editar el correo electrónico de la empresa *@
+            <div class="mb-6">
+                <label for="EditCompany_Email" class="form-label">Email</label> <!-- Etiqueta del campo de correo electrónico -->
+                <input class="form-control" id="EditCompany_Email" name="UpdateCompany.Email" value="@Model.UpdateCompany.Email" /> <!-- Campo de entrada para el correo electrónico de la empresa -->
+            </div>
+
+            @* Campo para seleccionar la agencia de la empresa desde un dropdown *@
+            <div class="mb-6">
+                <label for="EditCompany_SelectedAgency" class="form-label">Agencia</label> <!-- Etiqueta del dropdown para seleccionar la agencia -->
+                <select class="form-select" id="EditCompany_SelectedAgency" name="UpdateCompany.SelectedAgency" asp-items="Model.AvailableAgenciesSelectList">
+                    <!-- Dropdown para seleccionar la agencia -->
+                    <option value="">Seleccionar Agencia</option> <!-- Opción por defecto para seleccionar una agencia -->
+                </select>
+            </div>
+
+            @* Campo para seleccionar el subsistema de transporte de la empresa desde un dropdown *@
+            <div class="mb-6">
+                <label for="EditCompany_SelectedSubsistemaTransporte" class="form-label">Subsistema de Transporte</label> <!-- Etiqueta del dropdown para seleccionar el subsistema de transporte -->
+                <select class="form-select" id="EditCompany_SelectedSubsistemaTransporte" name="UpdateCompany.SelectedSubsistemaTransporte" asp-items="Model.AvailableSubsistemasSelectList">
+                    <!-- Dropdown para seleccionar el subsistema de transporte -->
+                    <option value="">Seleccionar Subsistema</option>
+                </select>
+            </div>
+
+            @* Botones para enviar el formulario o cancelar la operación *@
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button> <!-- Botón para enviar el formulario con los datos modificados -->
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">Cancelar</button> <!-- Botón para cancelar la edición y cerrar el offcanvas -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

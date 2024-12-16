@@ -1,0 +1,109 @@
+@page
+@model BW_WEB.Pages.GTFS.Routes.RouteCRUDModel
+@{
+    ViewData["Title"] = "Routes";
+    var token = Model.HttpContext.Session.GetString("JWToken");
+}
+
+<h2 class="mb-4">Rutas</h2>
+
+<!-- Sección para importar los estilos CSS necesarios -->
+@section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/datatables-bs5/datatables.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/sweetalert2/sweetalert2.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/form-validation.dist.css" />
+}
+
+<!-- Sección de scripts JS -->
+@section VendorScripts {
+    <script src="~/vendor/libs/moment/moment.dist.js"></script>
+    <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/sweetalert2/sweetalert2.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/popular.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/auto-focus.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave-phone.dist.js"></script>
+}
+
+@section PageScripts {
+    <script src="~/js/GTFS-route.js"></script>
+}
+
+<div class="col-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="text-center">Seleccionar Versión:</h5>
+        </div>
+        <div class="col d-flex justify-content-center mt-2 mb-2">
+            <form method="post">
+                <select id="versionSelect" class="select2 form-select" style="width:85%" asp-for="SelectedVersionID" asp-items="Model.Versions" onchange="this.form.submit()">
+                    <option value="">Seleccione una versión</option>
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@if (Model.RoutesByVersion != null && Model.RoutesByVersion.Count > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5> <!-- Título del filtro de búsqueda -->
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="routeTable" class="table">
+                <thead class="border-top">
+                    <tr>
+                        <td></td>
+                        <th>Código Ruta</th>
+                        <th>Nombre Ruta</th>
+                        <th>Código Agencia</th>
+                        <th>Tipo Ruta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var route in Model.RoutesByVersion)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div style="background-color:#@route.RouteColor;width:80%;margin: auto;text-align:center;border: 3px solid black;border-radius:10px;">
+                                    <span style="color:#@route.RouteTextColor">@route.RouteShortName</span>
+                                </div>
+                            </td>
+                            <td>@route.RouteLongName</td>
+                            <td>@route.AgencyID</td>
+                            <td>@route.TipoRutaDescripcion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5> <!-- Título que se muestra aunque no haya rutas -->
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="routeTable" class="table">
+                <thead class="border-top">
+                    <tr>
+                        <td></td>
+                        <th>Código Ruta</th>
+                        <th>Nombre Ruta</th>
+                        <th>Código Agencia</th>
+                        <th>Tipo Ruta</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,79 @@
+@* Offcanvas para la edición de un usuario existente *@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="editUserOffcanvas" aria-labelledby="editUserOffcanvasLabel">
+
+    @* Encabezado del offcanvas con un título y un botón para cerrarlo *@
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="editUserOffcanvasLabel">Editar Usuario</h5> <!-- Título que indica que es para editar un usuario -->
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> <!-- Botón para cerrar el offcanvas -->
+    </div>
+
+    @* Cuerpo del offcanvas donde se encuentra el formulario para editar el usuario seleccionado *@
+    <div class="offcanvas-body mx-0 flex-grow-0">
+
+        @* Formulario para editar un usuario existente. El formulario envía datos usando el método POST y el handler "EditOrUpdate" *@
+        <form method="post" asp-page-handler="EditOrUpdate" asp-route-id="@Model.UpdateUser.UsuarioID" id="editUserForm">
+
+            @* Campo para editar el correo electrónico del usuario *@
+            <div class="mb-6">
+                <label for="EditUser_Email" class="form-label">Email</label> <!-- Etiqueta del campo de correo electrónico -->
+                <input class="form-control" id="EditUser_Email" name="UpdateUser.Email" value="@Model.UpdateUser.Email" disabled /> <!-- Campo de entrada para el email del usuario -->
+            </div>
+
+            @* Campo para editar el nombre del usuario *@
+            <div class="mb-6">
+                <label for="EditUser_UserName" class="form-label">Nombre</label> <!-- Etiqueta del campo de nombre -->
+                <input class="form-control" id="EditUser_UserName" name="UpdateUser.Nombre" value="@Model.UpdateUser.Nombre" /> <!-- Campo de entrada para el nombre del usuario -->
+            </div>
+
+            @* Campo para editar los apellidos del usuario *@
+            <div class="mb-6">
+                <label for="EditUser_Apellidos" class="form-label">Apellidos</label> <!-- Etiqueta del campo de apellidos -->
+                <input class="form-control" id="EditUser_Apellidos" name="UpdateUser.Apellidos" value="@Model.UpdateUser.Apellidos" /> <!-- Campo de entrada para los apellidos del usuario -->
+            </div>
+
+            @* Campo para seleccionar el rol del usuario desde un dropdown *@
+            <div class="mb-6">
+                <label for="EditUser_SelectedRole" class="form-label">Rol</label> <!-- Etiqueta del dropdown para seleccionar el rol -->
+                <select class="form-select" id="EditUser_SelectedRole" name="UpdateUser.SelectedRole" asp-items="Model.AvailableRolesSelectList">
+                    <!-- Dropdown para seleccionar el rol -->
+                    <option value="">Seleccionar rol</option> <!-- Opción por defecto para seleccionar un rol -->
+                </select>
+            </div>
+
+            @* Campo para seleccionar las estados desde un dropdown *@
+            <div class="mb-6">
+                <label for="EditUser_SelectedEstado" class="form-label">Estado</label>
+                <select class="form-select" id="EditUser_SelectedEstado" name="UpdateUser.Estado" asp-items="Model.AvailableEstadoUsuarioSelectList">
+                </select>
+            </div>
+
+            @* Campo para seleccionar las empresas desde un dropdown *@
+            @* <div class="mb-6">
+            <label for="UpdateUser_SelectedEmpresas" class="form-label">Empresas</label>
+            <select id="UpdateUser_SelectedEmpresas" name="UpdateUser.UsuarioEmpresas" class="select2 form-select" multiple asp-items="Model.AvailableEmpresasSelectList">
+            </select>
+            </div> *@
+            @* <div class="mb-6">
+            <label for="EditUser_SelectedEmpresas" class="form-label">Empresas</label>
+            <select id="EditUser_SelectedEmpresas" name="UpdateUser.UsuarioEmpresas" class="select2 form-select" multiple asp-items="Model.AvailableEmpresasSelectList">
+            </select>
+            </div> *@
+            <div class="mb-6">
+                <label for="EditUser_SelectedEmpresas" class="form-label">Empresas</label>
+                <select id="EditUser_SelectedEmpresas" name="SelectedEmpresaIDs" class="select2 form-select" multiple asp-items="Model.AvailableEmpresasSelectList">
+                </select>
+
+            </div>
+
+
+
+            @* Botones para enviar el formulario o cancelar la operación *@
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-3">Guardar Cambios</button> <!-- Botón para enviar el formulario con los datos modificados -->
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">Cancelar</button> <!-- Botón para cancelar la edición y cerrar el offcanvas -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

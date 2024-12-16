@@ -1,0 +1,48 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="editVehicleOffcanvas" aria-labelledby="editVehicleOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="editVehicleOffcanvasLabel">Editar Vehículo</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+        <form method="post" asp-page-handler="EditOrUpdate" asp-route-id="@Model.updateVehicle.vehicle_id" id="editVehicleForm">           
+
+            <div class="mb-6">
+                <label for="EditVehicle_Id" class="form-label">Vehículo ID</label>
+                <input type="text" id="EditVehicle_Id" name="vehicle.vehicle_id" class="form-control" placeholder="Vehicle ID" disabled/>
+            </div>
+            <div class="mb-6">
+                <label for="EditVehicle_LicensePlate" class="form-label">Matrícula</label>
+                <input type="text" id="EditVehicle_LicensePlate" name="vehicle.license_plate" class="form-control" placeholder="ABC123" />
+            </div>
+            <div class="mb-6">
+                <label for="EditVehicle_Label" class="form-label">Etiqueta</label>
+                <input type="text" id="EditVehicle_Label" name="vehicle.label" class="form-control" placeholder="My Car"  />
+            </div>
+            <div class="mb-6">
+                <label for="EditVehicle_Type" class="form-label">Tipo vehículo</label>
+                <select id="EditVehicle_Type" name="vehicle.vehicle_type_id" class="form-select" >
+                    <option value="" disabled selected>Select Type</option>
+                    @foreach (var type in Model.VehicleTypes)
+                    {
+                        <option value="@type.Value">@type.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-6">
+                <label for="EditVehicle_CompanyID" class="form-label">Empresa</label>
+                <select id="EditVehicle_CompanyID" name="vehicle.EmpresaID" class="form-select" >
+                <option value="" disabled selected>Select Agency</option>
+                    @foreach (var company in Model.EmpresaList)
+                    {
+                        <option value="@company.Value">@company.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2">Actualizar</button>
+                <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

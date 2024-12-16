@@ -1,0 +1,29 @@
+@model BW_WEB.Pages.Vehicle.Vehicle_TypesModel
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="createVehicleTypeOffcanvas" aria-labelledby="createVehicleOffcanvasLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 id="createVehicleOffcanvasLabel" class="offcanvas-title">Agregar Tipo de Vehículo</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+        <form id="createVehicleTypeForm" class="add-new-vehicle" method="post">
+            <div class="mb-6">
+                <label for="VehicleType_vehicle_type_id" class="form-label">Tipo vehículo Id</label>
+                <input asp-for="VehicleType.vehicle_type_id" class="form-control" id="VehicleType_vehicle_type_id" placeholder="vehicle Id" aria-label="Label" />
+                
+            </div>
+            <div class="mb-6">
+                <label for="VehicleType_name" class="form-label">Nombre</label>
+                <input asp-for="VehicleType.name" class="form-control" id="VehicleType_name" placeholder="My Car" aria-label="Label" />
+                
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary me-3">Crear</button>
+                    <button type="reset" class="btn btn-label-danger" data-bs-dismiss="offcanvas">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,238 @@
+@page
+@model BW_WEB.Pages.Administration.SystemUsers.SystemUserCRUDModel
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "UserCRUD";
+}
+
+<script>
+    // Inyectar el valor de BaseUrl desde el appsettings.json en una variable JavaScript
+    const baseUrl = '@Configuration["ApiSettings:BaseUrl"]';
+</script>
+
+@section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/datatables-bs5/datatables.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.dist.css">
+    <link rel="stylesheet" href="~/vendor/libs/sweetalert2/sweetalert2.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/form-validation.dist.css" />
+
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/tagify/tagify.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/bootstrap-select/bootstrap-select.dist.css" />
+    <link rel="stylesheet" href="~/vendor/libs/typeahead-js/typeahead.dist.css" />
+}
+
+@section VendorScripts {
+    <script src="~/vendor/libs/moment/moment.dist.js"></script>
+    <script src="~/vendor/libs/datatables-bs5/datatables-bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/sweetalert2/sweetalert2.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/popular.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/auto-focus.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave.dist.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave-phone.dist.js"></script>
+
+    <script src="~/vendor/libs/select2/select2.dist.js"></script>
+    <script src="~/vendor/libs/tagify/tagify.dist.js"></script>
+    <script src="~/vendor/libs/bootstrap-select/bootstrap-select.dist.js"></script>
+    <script src="~/vendor/libs/typeahead-js/typeahead.dist.js"></script>
+    <script src="~/vendor/libs/bloodhound/bloodhound.dist.js"></script>
+}
+
+@section PageScripts {
+    <script src="~/js/user-crud-operations.dist.js"></script>
+    <script src="~/js/forms-selects.dist.js"></script>
+
+    <script>
+
+        // Función para ocultar la columna "Empresas"
+        function hideEmpresasColumn() {
+                    var table = document.getElementById("userTable");
+                    if (table) {
+                // Ocultar la cabecera
+                var headerCells = table.tHead.rows[0].cells;
+                if (headerCells.length > 6) {
+                            headerCells[6].style.display = "none";
+                        }
+
+                // Ocultar las celdas en el cuerpo de la tabla
+                var rows = table.tBodies[0].rows;
+                for (var i = 0; i < rows.length; i++) {
+                            var cells = rows[i].cells;
+                    if (cells.length > 6) {
+                        cells[6].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Llamar a la función al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            hideEmpresasColumn();
+        });
+    </script>
+}
+
+<h2 class="mb-4">Usuarios</h2>
+
+@if (Model.Users != null && Model.Users.Count > 0)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5>
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="userTable" class="table">
+                <thead class="border-top">
+                    <tr>
+                        <th></th>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Empresas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td></td>
+                            <td class="text-capitalize text-heading">@user.Email</td>
+                            <td class="text-capitalize text-heading">@user.Nombre</td>
+                            <td class="text-capitalize text-heading">@user.Apellidos</td>
+                            <td>
+                                <label class="badge bg-info text-wrap fs-8" id="lblRol">@user.Rol.Nombre</label>
+                            </td>
+
+                            <td class="text-capitalize">
+                                @switch (user.Estado)
+                                {
+                                    case 0:
+                                        <label class="badge bg-warning text-wrap fs-8">Pendiente</label>
+                                        <span id="@user.UsuarioID-estado" style="display:none">@user.Estado</span>
+                                        ; break;
+                                    case 1:
+                                        <label class="badge bg-success text-wrap fs-8">Activo</label>
+                                        <span id="@user.UsuarioID-estado" style="display:none">@user.Estado</span>
+                                        ; break;
+                                    case 2:
+                                        <label class="badge bg-danger text-wrap fs-8">Inactivo</label>
+                                        <span id="@user.UsuarioID-estado" style="display:none">@user.Estado</span>
+                                        ; break;
+                                    default:
+                                        <label class="badge bg-secondary text-wrap fs-8">Desconocido</label>
+                                        <span id="@user.UsuarioID-estado" style="display:none">@user.Estado</span>
+                                        ; break;
+                                }
+                            </td>
+
+                            <td>
+                                @if (user.UsuarioEmpresas != null && user.UsuarioEmpresas.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var empresa in user.UsuarioEmpresas)
+                                        {
+                                            <li>@empresa.EmpresaID<span>,</span></li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span>No asociada</span>
+                                }
+                            </td>
+
+                            <td class="text-nowrap">
+                                <button class="btn btn-sm btn-icon btn-node-x edit-user-button shadow-none" data-bs-toggle="offcanvas"
+                                        data-bs-target="#editUserOffcanvas" id="@user.UsuarioID-editUser">
+                                    <i class="ti ti-edit"></i>
+                                </button>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@user.UsuarioID" id="@user.UsuarioID-deleteForm"
+                                      onsubmit="showSuccessAlert('Deleted');" class="d-inline">
+                                    <button class="btn btn-sm btn-icon btn-node-x shadow-none" id="@user.UsuarioID-deleteUser"
+                                            onclick="showDeleteConfirmation('@user.UsuarioID')">
+                                        <i class="ti ti-trash"></i>
+                                    </button>
+                                </form>
+                                <button class="btn btn-sm btn-icon btn-node-x dropdown-toggle hide-arrow shadow-none"
+                                        data-bs-toggle="dropdown">
+                                    <i class="ti ti-dots-vertical"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end m-0">
+                                    <a href="javascript:void(0);" class="dropdown-item" onclick="enviarCorreoRestablecerContrasena('@user.Email')">Enviar correo restablecer contraseña</a>
+                                    <a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" data-userid="@user.UsuarioID">Restablecer contraseña manualmente</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Filtro de búsqueda</h5>
+        </div>
+        <div class="card-datatable table-responsive border-top">
+            <table id="userTable" class="table">
+                <thead class="border-top">
+                    <tr>
+                        <th></th>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Empresas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+}
+
+@await Html.PartialAsync("partials/_CreatUserOffcanvasPartial")
+@await Html.PartialAsync("partials/_EditUserOffcanvasPartial")
+
+<div class="col-lg-4 col-md-6">
+    <small class="text-light fw-medium">Vertically centered</small>
+    <div class="mt-4">
+        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Restablecer contraseña manualmente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-4">
+                            <div class="col mb-0">
+                                <label for="passwordWithTitle" class="form-label">Contraseña</label>
+                                <input type="text" id="passwordWithTitle" class="form-control" placeholder="Escriba la contraseña">
+                            </div>
+                            <div class="col mb-0">
+                                <label for="repeatPasswordWithTitle" class="form-label">Repetir Contraseña</label>
+                                <input type="text" id="repeatPasswordWithTitle" class="form-control" placeholder="Repetir contraseña">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="changePasswordButton">Cambiar contraseña</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.AntiForgeryToken()

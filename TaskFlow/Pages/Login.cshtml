@@ -1,0 +1,101 @@
+@page
+@model BW_WEB.Pages.LoginModel
+@{
+    Layout = "Layouts/_BlankLayout";
+
+
+
+    ViewData["Title"] = "Login";
+}
+
+@section VendorStyles {
+    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/form-validation.dist.css" />
+}
+
+@section VendorScripts {
+    <script src="~/vendor/libs/&#64;form-validation/popular.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/bootstrap5.dist.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/auto-focus.dist.js"></script>
+}
+
+@section PageStyles {
+    <link rel="stylesheet" href="~/vendor/css/pages/page-auth.dist.css">
+    <link rel="stylesheet" href="~/css/toast-alert-position.css">
+}
+
+@section PageScripts {
+    <script src="~/js/pages-auth.dist.js"></script>
+}
+
+<!-- Estilos para la alerta tipo "toast" en la esquina superior derecha -->
+<style>
+    .alert-toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        min-width: 300px;
+        opacity: 0.9;
+    }
+</style>
+
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner py-6">
+            <!-- Login -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center mb-6">
+                        <a href="/" class="app-brand-link">
+                            <span class="app-brand-logo demo">@await Html.PartialAsync("../_Partials/_Macros")</span>
+                            <span class="app-brand-text demo text-heading fw-bold">@TempData.Peek("appName")</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+
+                    <h4 class="mb-1">Bienvenido a Prueba de Adolfo!</h4>
+                    <p class="mb-6">Inicie sesión en su cuenta</p>
+
+                    <!-- Alerta de error tipo "toast" en la esquina superior derecha -->
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+
+
+
+                    {
+                        <div class="alert alert-solid-danger d-flex align-items-center alert-toast" role="alert">
+                            <span class="alert-icon rounded">
+                                <i class="ti ti-ban"></i>
+                            </span>
+                            @Model.ErrorMessage
+                        </div>
+                    }
+
+                    <!-- Formulario de Login -->
+                    <form id="formAuthentication" class="mb-4" method="POST" asp-page-handler="Login">
+                        <div class="mb-6">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" asp-for="Email" placeholder="Introduce tu Email" required autofocus />
+                        </div>
+                        <div class="mb-6 form-password-toggle">
+                            <label class="form-label" for="password">Password</label>
+                            <div class="input-group input-group-merge">
+                                <input type="password" class="form-control" id="Password" name="Password" asp-for="Password" placeholder="••••••••••••" aria-describedby="password" required />
+                                <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                        </div>
+                    </form>
+
+                    <!-- Formulario separado para el botón de "¿Has olvidado tu contraseña?" -->
+                    <a href="/ForgotPassword" id="forgotPasswordBtn" class="btn btn-link">
+                        <p class="mb-0">¿Has olvidado tu contraseña?</p>
+                    </a>
+                </div>
+            </div>
+            <!-- /Login -->
+        </div>
+    </div>
+</div>
