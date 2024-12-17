@@ -7,10 +7,6 @@ using TaskFlow.Solution.Pages.Apps.Models;
 
 namespace AspnetCoreFull.Pages.Apps;
 
-public class CalendarModel : PageModel
-{
-  public void OnGet() { }
-}
 public class KanbanModel : PageModel
 {
   private readonly IHttpClientFactory _httpClientFactory;
@@ -162,13 +158,4 @@ public class WorkItemResponse
   public string assignedUserName { get; set; }
   public string createdAt { get; set; }
   public string updatedAt { get; set; }
-}
-
-public class EmailModel : PageModel
-{
-  public void OnGet() { }
-}
-public class ChatModel : PageModel
-{
-  public void OnGet() { }
 }
