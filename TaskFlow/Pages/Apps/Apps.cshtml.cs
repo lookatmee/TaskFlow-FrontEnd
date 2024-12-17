@@ -15,14 +15,16 @@ public class KanbanModel : PageModel
 {
   private readonly IHttpClientFactory _httpClientFactory;
   private readonly IOptions<ApiSettings> _apiSettings;
+  private readonly IHttpContextAccessor _httpContextAccessor;
 
   public string KanbanData { get; private set; }
   public string UsersData { get; private set; }
 
-  public KanbanModel(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
+  public KanbanModel(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings, IHttpContextAccessor httpContextAccessor)
   {
     _httpClientFactory = httpClientFactory;
     _apiSettings = apiSettings;
+    _httpContextAccessor = httpContextAccessor;
   }
 
   public async Task OnGetAsync()
@@ -31,6 +33,13 @@ public class KanbanModel : PageModel
     {
       var client = _httpClientFactory.CreateClient("ApiClient");
       var kanbanBoards = new List<KanbanBoard>();
+
+      // Agregar el token a las peticiones
+      var token = _httpContextAccessor.HttpContext?.Session.GetString("JWToken");
+      if (!string.IsNullOrEmpty(token))
+      {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+      }
 
       // Obtener usuarios
       var users = await client.GetFromJsonAsync<List<User>>($"{_apiSettings.Value.BaseUrl}/Users");
@@ -87,6 +96,13 @@ public class KanbanModel : PageModel
     try
     {
       var client = _httpClientFactory.CreateClient("ApiClient");
+
+      // Agregar el token a las peticiones
+      var token = _httpContextAccessor.HttpContext?.Session.GetString("JWToken");
+      if (!string.IsNullOrEmpty(token))
+      {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+      }
 
       // Establecer valores por defecto para las fechas
       workItem.createdAt = DateTime.UtcNow.ToString("o");

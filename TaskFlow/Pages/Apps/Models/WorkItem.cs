@@ -10,4 +10,14 @@ public class WorkItem
     public string assignedUserName { get; set; }
     public string createdAt { get; set; }
     public string updatedAt { get; set; }
+
+    // Constructor para inicializar las propiedades requeridas
+    public WorkItem()
+    {
+        title = string.Empty;
+        description = string.Empty;
+        assignedUserName = string.Empty;
+        createdAt = DateTime.UtcNow.ToString("o");
+        updatedAt = DateTime.UtcNow.ToString("o");
+    }
 }

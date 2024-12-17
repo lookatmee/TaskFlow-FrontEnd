@@ -73,18 +73,25 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Lista de rutas que no requieren autenticación
-var allowedRoutes = new[] { "/Login", "/ForgotPassword", "/ResetPassword" };
+var allowedRoutes = new[] {
+    "/Login",
+    "/ForgotPassword",
+    "/ResetPassword",
+    "/Apps/Kanban"  // Agregar esta ruta
+};
 
 // Middleware para redirigir a Login si no hay token
 app.Use(async (context, next) =>
 {
-  var token = context.Session.GetString("JWToken");
-  if (string.IsNullOrEmpty(token) && !allowedRoutes.Any(route => context.Request.Path.Value.StartsWith(route, StringComparison.OrdinalIgnoreCase)))
-  {
-    context.Response.Redirect("/Login");
-    return;
-  }
-  await next();
+    var token = context.Session.GetString("JWToken");
+    if (string.IsNullOrEmpty(token) &&
+        !allowedRoutes.Any(route =>
+            context.Request.Path.Value.StartsWith(route, StringComparison.OrdinalIgnoreCase)))
+    {
+        context.Response.Redirect("/Login");
+        return;
+    }
+    await next();
 });
 
 // Mapear Razor Pages

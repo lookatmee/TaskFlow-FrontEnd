@@ -61,7 +61,7 @@ namespace BW_WEB.Pages
         }
 
         HttpContext.Session.SetString("JWToken", token);
-        return RedirectToPage("/Dashboards/Analytics");
+        return RedirectToPage("/Apps/Kanban");
       }
       else
       {
